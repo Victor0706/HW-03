@@ -1,0 +1,27 @@
+
+
+{% block content %}
+<h1>Мой профиль</h1>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% if user.photo %}
+    <p><img class="img-article-left" width="200" height="201" src="{{ user.photo.url }}">
+    {% else %}
+    <p><img class="img-article-left" width="200" height="201" src="/media/default.png">
+    {% endif %}
+
+    <div class="form-error">{{ form.non_field_errors }}</div>
+    {% for f in form %}
+    <p><label class="form-label" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</p>
+    <div class="form-error">{{ f.errors }}</div>
+    {% endfor %}
+
+    <p><button type="submit">Сохранить</button></p>
+    <a href="{% url 'index' %}"><u><button type="submit"
+                                                               class="btn btn-primary">Посетить чат</button> </u></a>
+</form>
+
+<hr>
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% block title %}
+<h1>Профили всех пользователей</h1>
+{% endblock title %}
+
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профили всех пользователей</title>
+</head>
+<body>
+
+</body>
+</html>
+<form method="post" enctype="multipart/form-data">
+   {% if users %}
+       <table>
+           <tr>
+               <td><h2>Фотография</h2></td>
+               <td><h2>Имя</h2></td>
+               <td><h2>Фамилия</h2></td>
+           </tr>
+           {% for user in users %}
+           <tr>
+               <td>
+                   {% if user.photo %}
+                   <p><img class="img-article-left" width="100" height="101" src="{{ user.photo.url }}">
+                   {% else %}
+                   <p><img class="img-article-left" width="100" height="101" src="/media/default.png">
+                   {% endif %}
+               </td>
+               <td>{{ user.first_name }}</td>
+               <td>{{ user.last_name }}</td>
+           </tr>
+           {% endfor %}
+       </table>
+   {% else %}
+       <h2>Нет ни одного профиля!</h2>
+   {% endif %}
+</form>
+    <a href="{% url 'index' %}"><u><button type="submit" class="btn btn-primary">Посетить чат</button> </u></a>
+
+{% endblock content %}

@@ -1,0 +1,13 @@
+{% block content %}
+<h1>Авторизация пользователя</h1>
+<hr>
+<form id="logout-form" action="{% url 'logout' %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Logout</button>
+</form>
+{% endblock %}
+
+
+
+
+
